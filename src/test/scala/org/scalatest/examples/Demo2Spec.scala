@@ -11,10 +11,12 @@ class Demo2Spec extends FunSpec with Matchers with PropertyChecks with TypeCheck
   describe("The squareRoot1 function") {
     it("should compute the square root") {
       forAll { (x: Double) =>
-        whenever (x >= 0.0 && !x.isPosInfinity) {
-          squareRoot1(x) should === (math.sqrt(x))
+        whenever(x >= 0.0 && !x.isPosInfinity) {
+          squareRoot1(x) should ===(math.sqrt(x))
         }
       }
+    }
+    it("should compute the square root and check with tolerance") {
       forAll { (x: Double) =>
         whenever (x >= 0.0 && !x.isPosInfinity) {
           val result = squareRoot1(x)

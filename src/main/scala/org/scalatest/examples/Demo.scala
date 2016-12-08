@@ -36,12 +36,4 @@ object Demo {
     // PosZDouble.from(result).get
     PosZDouble.ensuringValid(result)
   }
-/*
-
-  def squareRoot(x: PosZDouble): PosZDouble = {
-    require(!x.isPosInfinity)
-    val result = math.sqrt(x)
-    PosZDouble.ensuringValid(result)
-  }
-*/
 }
