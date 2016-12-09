@@ -1,5 +1,6 @@
-
 package org.scalatest.examples
+
+// Type-constructor polymorphism
 
 import org.scalactic.TypeCheckedTripleEquals
 import org.scalatest.examples.Demo._
@@ -8,31 +9,22 @@ import org.scalatest.{FunSpec, Matchers}
 
 class Demo2Spec extends FunSpec with Matchers with PropertyChecks with TypeCheckedTripleEquals {
 
-  describe("The squareRoot1 function") {
+  describe("The squareRootB function") {
     it("should compute the square root") {
       forAll { (x: Double) =>
-        whenever(x >= 0.0 && !x.isPosInfinity) {
-          squareRoot1(x) should ===(math.sqrt(x))
-        }
-      }
-    }
-    it("should compute the square root and check with tolerance") {
-      forAll { (x: Double) =>
         whenever (x >= 0.0 && !x.isPosInfinity) {
-          val result = squareRoot1(x)
-          val tolerance = math.ulp(x)
-          result * result should === (x +- tolerance)
+          noException should be thrownBy { squareRootB(x) }
         }
       }
     }
     it("should should throw IAE on negative input") {
-      an [IllegalArgumentException] should be thrownBy {
-        squareRoot1(-1.0)
+      an [AssertionError] should be thrownBy {
+        squareRootB(-1.0)
       }
     }
     it("should should throw IAE on positive infinity input") {
-      an [IllegalArgumentException] should be thrownBy {
-        squareRoot1(Double.PositiveInfinity)
+      an [AssertionError] should be thrownBy {
+        squareRootB(Double.PositiveInfinity)
       }
     }
   }

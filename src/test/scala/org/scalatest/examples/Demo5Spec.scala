@@ -1,19 +1,27 @@
-package org.scalatest.examples
 
-// Type-constructor polymorphism
+package org.scalatest.examples
 
 import org.scalactic.TypeCheckedTripleEquals
 import org.scalatest.examples.Demo._
 import org.scalatest.prop.PropertyChecks
-import org.scalatest.{LogicFunSpec, Matchers}
-
-class Demo5Spec extends LogicFunSpec with Matchers with PropertyChecks with TypeCheckedTripleEquals {
+import org.scalatest.{FunSpec, Matchers}
+// DEMO 5 - using a ForAll
+class Demo5Spec extends FunSpec with Matchers with PropertyChecks with TypeCheckedTripleEquals {
 
   describe("The squareRoot1 function") {
     it("should compute the square root") {
       forAll { (x: Double) =>
+        whenever(x >= 0.0 && !x.isPosInfinity) {
+          squareRoot1(x) should ===(math.sqrt(x))
+        }
+      }
+    }
+    it("should compute the square root and check with tolerance") {
+      forAll { (x: Double) =>
         whenever (x >= 0.0 && !x.isPosInfinity) {
-          squareRoot1(x) should === (math.sqrt(x))
+          val result = squareRoot1(x)
+          val tolerance = math.ulp(x)
+          result * result should === (x +- tolerance)
         }
       }
     }

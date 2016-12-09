@@ -2,22 +2,24 @@ package org.scalatest.examples
 
 // Type-constructor polymorphism
 
+import java.io.{File, FileWriter}
+
 import org.scalactic.TypeCheckedTripleEquals
-import org.scalactic.anyvals.PosZDouble
 import org.scalatest.examples.Demo._
 import org.scalatest.prop.PropertyChecks
-import org.scalatest.{LogicFunSpec, Matchers}
+import org.scalatest.{FunSpec, Matchers}
 
-// Use PosZDouble as result type
-class Demo7Spec extends LogicFunSpec with Matchers with PropertyChecks with TypeCheckedTripleEquals {
+// (Demo 6 was REPL demo of Assertion and Succeeded)
+
+// DEMO 7 File output
+class Demo7Spec extends FunSpec with Matchers with PropertyChecks with TypeCheckedTripleEquals {
 
   describe("The squareRoot1 function") {
     it("should compute the square root") {
-      forAll { (x: PosZDouble) =>
-        whenever (!x.isPosInfinity) {
-          squareRoot3(x).value should === (math.sqrt(x))
-        }
-      }
+      val two = squareRoot1(4.0)
+      val outputFile = new FileWriter("squareRoot.out")
+      try outputFile.write(two.toString + "\n")
+      finally outputFile.close()
     }
     it("should should throw IAE on negative input") {
       an [IllegalArgumentException] should be thrownBy {
