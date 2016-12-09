@@ -10,7 +10,7 @@ import org.scalatest.{LogicFunSpec, Matchers}
 
 // (Demo 10 - PosInt in the REPL)
 
-// DEMO 11 - Use PosZInt to Weaken or strengthen the require?
+// DEMO 11 - Use PosZInt to weaken the require?
 // Only input is changed to PosZDouble so far.
 class Demo11Spec extends LogicFunSpec with Matchers with PropertyChecks with TypeCheckedTripleEquals {
 

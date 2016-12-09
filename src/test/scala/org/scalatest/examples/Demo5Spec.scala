@@ -12,7 +12,7 @@ class Demo5Spec extends FunSpec with Matchers with PropertyChecks with TypeCheck
     it("should compute the square root") {
       forAll { (x: Double) =>
         whenever(x >= 0.0 && !x.isPosInfinity) {
-          squareRoot1(x) should ===(math.sqrt(x))
+          squareRoot1(x) should === (math.sqrt(x))
         }
       }
     }
