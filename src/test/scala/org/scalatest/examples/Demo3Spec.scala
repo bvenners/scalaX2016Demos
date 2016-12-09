@@ -7,7 +7,7 @@ import org.scalatest.examples.Demo._
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{FunSpec, Matchers}
 
-// DEMO 3 -
+// DEMO 3 - use require with ensuring
 class Demo3Spec extends FunSpec with Matchers with PropertyChecks with TypeCheckedTripleEquals {
 
   describe("The squareRootC function") {

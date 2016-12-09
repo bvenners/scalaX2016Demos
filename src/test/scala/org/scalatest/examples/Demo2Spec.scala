@@ -7,6 +7,7 @@ import org.scalatest.examples.Demo._
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{FunSpec, Matchers}
 
+// DEMO 2 - use assume with an ensuring that compares with math.sqrt
 class Demo2Spec extends FunSpec with Matchers with PropertyChecks with TypeCheckedTripleEquals {
 
   describe("The squareRootB function") {

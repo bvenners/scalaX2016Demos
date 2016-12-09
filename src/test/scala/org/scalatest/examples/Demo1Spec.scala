@@ -7,6 +7,7 @@ import org.scalatest.examples.Demo._
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{FunSpec, Matchers}
 
+// DEMO 1 - use assume with an ensuring that uses ULP and a tolerance
 class Demo1Spec extends FunSpec with Matchers with PropertyChecks with TypeCheckedTripleEquals {
 
   describe("The squareRootA function") {
